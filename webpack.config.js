@@ -10,12 +10,11 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     },
     module: {
-    rules: [
+      rules: [
       {
         test:  /\.scss$/i,
         use: [
             'style-loader',
-            MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader',
         ],
@@ -24,6 +23,32 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+            },
+     {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[path][name].[ext]',
+              limit: 8192,
+              esModule: false,
+            },
+          },
+          'img-loader',
+        ],
+        },
+     {
+        test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
     ],
     },

@@ -4,3 +4,10 @@ body {
   color: $body-color;
   background-color: aquamarine;
 }
+img {
+  max-width: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+}
